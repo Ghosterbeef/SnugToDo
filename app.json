@@ -4,11 +4,9 @@
     "slug": "myapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFA7A7"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,12 +19,38 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFA7A7"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "vue",
+        "js",
+        "jsx",
+        "json",
+        "ts",
+        "tsx",
+        "svg",
+        "wasm"
+      ],
+      "assetExts": [
+        "ttf"
+      ]
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#FFA7A7"
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
   }
 }
