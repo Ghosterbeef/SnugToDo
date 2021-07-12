@@ -4,28 +4,30 @@
       background-color="#FFA7A7"
       bar-style="light-content"
     />
-    <text class="header__title">Мои задачи</text>
+    <text class="header__title raleway_bold">Мои задачи</text>
     <AppHeaderCalendar/>
   </view>
 </template>
 
 <script>
-import AppHeaderCalendar from "./AppHeaderCalendar";
+import AppHeaderCalendar from "./AppHeaderCalendar"
+
 export default {
   name: "AppHeader",
-  components: {AppHeaderCalendar}
+  components: {AppHeaderCalendar},
+
 }
 </script>
 
-<style scoped>
-.header__container{
+<style>
+.header__container {
     width: 100%;
     padding-top: 50px;
     padding-left: 20px;
 }
+
 .header__title {
     font-size: 36px;
-    font-weight: 700;
     color: white;
 }
 
