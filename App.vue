@@ -36,7 +36,6 @@ Notifications.scheduleNotificationAsync({
   },
   trigger: {
     seconds: 10,
-    repeats: true,
   },
 });
 
