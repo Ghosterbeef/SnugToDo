@@ -1,5 +1,5 @@
 <template>
-  <view class="todo__container">
+  <view class="todo__container" v-if="isFontLoaded">
     <Modal animationType="slide"
            :transparent="true"
            :hardwareAccelerated="true"
@@ -38,7 +38,9 @@
       <scroll-view class="todo__scroll">
         <view class="todos__container">
           <AppToDoCategory v-for="category in categories"
-                           :key="category">
+                           :key="category.title"
+                           :isManyToDos="category.todos.length>1"
+          >
             <text>{{ category.title }}</text>
           </AppToDoCategory>
           <AppButton @onPress="onPressAddToDoButton"/>
@@ -52,6 +54,7 @@
 
 import AppButton from "./AppButton";
 import AppToDoCategory from "./AppToDoListCategory";
+import * as Font from "expo-font";
 
 export default {
   name: "AppToDoList",
@@ -61,8 +64,16 @@ export default {
       isAddToDoShow: false,
       categoryNameInput: "",
       isInputError: false,
+      isFontLoaded: false,
       categories: []
     }
+  },
+  async created() {
+    await Font.loadAsync({
+      RobotoLight: require("../node_modules/@expo-google-fonts/roboto/Roboto_300Light.ttf"),
+      RobotoRegular: require("../node_modules/@expo-google-fonts/roboto/Roboto_400Regular.ttf"),
+    })
+    this.isFontLoaded = true
   },
   methods: {
     onPressAddToDoButton() {
@@ -77,7 +88,7 @@ export default {
       this.categories.push(
           {
             title: this.categoryNameInput,
-            todos: []
+            todos: ["Выпить теблетку от головы", "Принять 2 таблетки черники форте"]
           }
       )
       this.categoryNameInput = ''
@@ -122,7 +133,7 @@ export default {
 
 .modal__inner-content__category__name {
   color: #3E3E3E;
-  font-weight: bold;
+  font-family: RobotoMedium;
   font-size: 18px;
   padding-left: 20px;
 }

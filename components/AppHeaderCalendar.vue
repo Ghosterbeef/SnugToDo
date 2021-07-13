@@ -1,13 +1,18 @@
 <template>
-  <view class="calendar__container">
+  <view class="calendar__container" v-if="isFontLoaded">
     <view v-for="(item ,index) in daysOfWeek" :key="item">
       <text :class="{'calendar__element-title' : true, 'active': (index+1 === dayOfWeek)}">{{ item }}</text>
-      <text :class="{'calendar__element-value' : true, 'active': (index+1 === dayOfWeek)}">{{ getNumberOfDay(index + 1) }}</text>
+      <text :class="{'calendar__element-value' : true, 'active': (index+1 === dayOfWeek)}">{{
+          getNumberOfDay(index + 1)
+        }}
+      </text>
     </view>
   </view>
 </template>
 
 <script>
+
+import * as Font from "expo-font";
 
 export default {
   name: "AppHeaderCalendar",
@@ -15,12 +20,21 @@ export default {
     return {
       currentDate: new Date(),
       daysOfWeek: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+      isFontLoaded: false
     }
   },
   computed: {
     dayOfWeek() {
       return this.currentDate.getDay() || 7
     },
+  },
+  async created() {
+    await Font.loadAsync({
+      RobotoLight: require("../node_modules/@expo-google-fonts/roboto/Roboto_300Light.ttf"),
+      RobotoRegular: require("../node_modules/@expo-google-fonts/roboto/Roboto_400Regular.ttf"),
+      RobotoBold: require("../node_modules/@expo-google-fonts/roboto/Roboto_700Bold.ttf")
+    })
+    this.isFontLoaded = true
   },
   methods: {
     getNumberOfDay(index) {
@@ -36,27 +50,27 @@ export default {
 
 <style scoped>
 .calendar__container {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 15px;
-    padding-right: 15px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-right: 15px;
 }
 
 .calendar__element-title {
-    font-size: 18px;
-    color: white;
-    font-weight: 500;
+  font-size: 14px;
+  color: white;
+  font-family: RobotoLight;
 }
 
 .calendar__element-value {
-    font-size: 14px;
-    color: white;
-    font-weight: 400;
+  font-family:RobotoLight;
+  font-size: 14px;
+  color: white;
 }
 
-.active{
-    font-size: 18px;
-    font-weight: 700;
+.active {
+  font-family: RobotoBold;
+  font-size: 14px;
 }
 </style>

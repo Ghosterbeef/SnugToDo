@@ -2,8 +2,8 @@ const { getDefaultConfig } = require("metro-config");
 
 module.exports = (async () => {
   const {
-    resolver: { sourceExts }
-  } = await getDefaultConfig();
+    resolver: { sourceExts, assetExts }
+  } = await getDefaultConfig(__dirname);
   return {
     transformer: {
       babelTransformerPath: require.resolve("./vueTransformerPlugin.js"),
@@ -15,6 +15,7 @@ module.exports = (async () => {
       })
     },
     resolver: {
+      assetExts: assetExts.filter(ext => ext !== "svg"),
       sourceExts: [...sourceExts, "vue"]
     }
   };
