@@ -40,6 +40,7 @@
           <AppToDoCategory v-for="category in categories"
                            :key="category.title"
                            :isManyToDos="category.todos.length>1"
+                           :todos="category.todos"
           >
             <text>{{ category.title }}</text>
           </AppToDoCategory>
@@ -55,10 +56,11 @@
 import AppButton from "./AppButton";
 import AppToDoCategory from "./AppToDoListCategory";
 import * as Font from "expo-font";
+import AppToDoCategoryElement from "./AppToDoListCategoryElement";
 
 export default {
   name: "AppToDoList",
-  components: {AppToDoCategory, AppButton},
+  components: {AppToDoCategoryElement, AppToDoCategory, AppButton},
   data() {
     return {
       isAddToDoShow: false,
@@ -88,7 +90,7 @@ export default {
       this.categories.push(
           {
             title: this.categoryNameInput,
-            todos: ["Выпить теблетку от головы", "Принять 2 таблетки черники форте"]
+            todos: [{title: "Выпить теблетку от головы"}, {title: "Принять 2 таблетки черники форте"}]
           }
       )
       this.categoryNameInput = ''
