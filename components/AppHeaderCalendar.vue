@@ -8,6 +8,9 @@
       </text>
     </view>
   </view>
+  <view v-else class="calendar__container">
+    <view v-for="item in daysOfWeek" :key="item" class="calendar__element__skeleton"/>
+  </view>
 </template>
 
 <script>
@@ -50,27 +53,33 @@ export default {
 
 <style scoped>
 .calendar__container {
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-top: 15px;
-  padding-right: 15px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-right: 15px;
 }
 
 .calendar__element-title {
-  font-size: 14px;
-  color: white;
-  font-family: RobotoLight;
+    font-size: 14px;
+    color: white;
+    font-family: RobotoLight;
 }
 
 .calendar__element-value {
-  font-family:RobotoLight;
-  font-size: 14px;
-  color: white;
+    font-family: RobotoLight;
+    font-size: 14px;
+    color: white;
 }
 
 .active {
-  font-family: RobotoBold;
-  font-size: 14px;
+    font-family: RobotoBold;
+    font-size: 14px;
+}
+
+.calendar__element__skeleton {
+    width: 20px;
+    height: 40px;
+    background-color: hsl(100, 0%, 90%);
 }
 </style>

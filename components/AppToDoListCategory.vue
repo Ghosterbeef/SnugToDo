@@ -52,7 +52,6 @@ export default {
   },
   async created() {
     await Font.loadAsync({
-      //RobotoLight: require("../node_modules/@expo-google-fonts/roboto/Roboto_300Light.ttf"),
       RobotoRegular: require("../node_modules/@expo-google-fonts/roboto/Roboto_400Regular.ttf")
     })
     this.isFontLoaded = true
